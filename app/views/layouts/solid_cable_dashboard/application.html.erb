@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="<%= @appearance == 'dark' ? 'dark' : '' %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= SolidCableDashboard.configuration.title %></title>
+  
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  
+  <%= stylesheet_link_tag "solid_cable_dashboard/application" %>
+  <%= javascript_include_tag "solid_cable_dashboard/application", defer: true %>
+  <%= javascript_include_tag "solid_cable_dashboard/alpine", defer: true %>
+  <%= javascript_include_tag "chartkick", "Chart.bundle" %>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+  <div class="flex flex-col h-screen">
+    <%= render "solid_cable_dashboard/application/navbar" %>
+    
+    <main class="container mx-auto px-4 py-6 flex-1">
+      <%= render "solid_cable_dashboard/application/flash_messages" if flash.any? %>
+      
+      <%= yield %>
+    </main>
+    
+    <%= render "solid_cable_dashboard/application/footer" %>
+  </div>
+</body>
+</html>
